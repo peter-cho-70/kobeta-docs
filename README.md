@@ -10,7 +10,8 @@
 
 문서 전체 인덱스는 **[doc/index.html](doc/index.html)** 참고. 주요 문서:
 
-- [개발 진행 기록 (PROGRESS)](doc/PROGRESS.md) — 날짜별 개발 타임라인, 수정/버그 이력, 알려진 이슈, 향후 개발 방향
+- [개발 현황 (STATUS)](doc/STATUS.md) — 완료/진행중/알려진 이슈/다음 우선순위, 항상 최신 기준으로 갱신
+- [개발 기록 (DEVLOG)](doc/DEVLOG.md) — 날짜별 개발 타임라인, 수정/버그 이력
 - [교육 커리큘럼 설계 플랫폼 PRD](doc/spec/PRD_curriculum.md) — 실제 구현이 진행된 축. 마스터데이터·Pool·빌더·예산/KPI/사업계획서 관리 설계
 - [쇼츠 제작 플랫폼 PRD](doc/spec/PRD.md) — 데이터 모델과 화면 뼈대만 구현된 상태 (AI 분석·렌더링 파이프라인은 미구현)
 - [데이터 저장 구조](doc/architecture.md) — Neon Postgres + Vercel Blob 아키텍처
@@ -28,7 +29,7 @@
 
 기술 스택: Next.js(App Router) + Prisma 7 + Neon Postgres(서버리스) + Vercel Blob + Vercel 배포.
 
-자세한 개발 타임라인·버그 수정 이력·향후 방향은 **[doc/PROGRESS.md](doc/PROGRESS.md)** 참고.
+자세한 현재 상태는 **[doc/STATUS.md](doc/STATUS.md)**, 개발 타임라인·버그 수정 이력은 **[doc/DEVLOG.md](doc/DEVLOG.md)** 참고.
 
 ---
 
