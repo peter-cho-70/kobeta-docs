@@ -86,6 +86,34 @@
   .chip.plan{ background:var(--plan-bg); color:var(--plan); }
   .chip.snap{ background:var(--snap-bg); color:var(--snap); }
   .chip.arch{ background:var(--bg-sunk); color:var(--ink-faint); }
+  /* New 배지 — 데이터(실제 git 커밋일) 기준 최근 7일(일주일) 이내 갱신된 문서. 다른 chip과 같은 자리에
+     같이 못 들어가므로(하나의 grid 슬롯) 문서 제목 옆 별도 배지로 붙인다 — chip과는 다른 자리. */
+  .doc-title .new-badge{
+    display:inline-block; font-family:var(--mono); font-size:9.5px; font-weight:800; letter-spacing:.03em;
+    color:#fff; background:var(--live); border-radius:5px; padding:1px 6px; margin-left:6px; vertical-align:middle;
+  }
+
+  /* 섹션별 "최신 문서순" 정렬 토글 버튼 */
+  .sec-head{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; margin:0 0 4px; }
+  .sec-head h2{ margin:0; }
+  .sort-btn{
+    font-family:var(--mono); font-size:11px; color:var(--ink-dim); background:var(--bg-raised);
+    border:1px solid var(--line-strong); border-radius:20px; padding:5px 12px; cursor:pointer;
+    white-space:nowrap; transition:border-color .12s, color .12s;
+  }
+  .sort-btn:hover{ border-color:var(--accent); color:var(--accent-ink); }
+  .sort-btn.active{ border-color:var(--accent); color:var(--accent-ink); background:var(--plan-bg); font-weight:700; }
+
+  /* 정렬 규칙 안내 — 페이지 상단에서 New 배지 기준과 기본/토글 정렬 규칙을 미리 설명 */
+  .sort-rule{
+    font-size:12px; color:var(--ink-dim); border:1px dashed var(--line-strong); border-radius:8px;
+    padding:10px 14px; margin:18px 0 4px; line-height:1.7;
+  }
+  .sort-rule b{ color:var(--ink); }
+  .sort-rule .new-badge-sample{
+    display:inline-block; font-family:var(--mono); font-size:9.5px; font-weight:800; letter-spacing:.03em;
+    color:#fff; background:var(--live); border-radius:5px; padding:1px 6px; vertical-align:middle;
+  }
 
   .no-match{ display:none; text-align:center; color:var(--ink-faint); font-size:13.5px; padding:30px 0; }
 
@@ -108,34 +136,43 @@
   <p class="lede">교육 커리큘럼 설계/빌더 플랫폼의 기획서·개발 기록·콘텐츠 자료 통합 인덱스. 문서는 성격별로 <b>spec</b>(기획·설계) / <b>data</b>(교육과정 콘텐츠 자료)로 나뉩니다.</p>
   <a class="back" href="https://peter-cho-70.github.io/">← 문서 허브로 돌아가기</a>
 
+  <div class="sort-rule">
+    <span class="new-badge-sample">NEW</span> 배지는 실제 마지막 수정일(git 커밋일) 기준 <b>7일 이내</b>에 바뀐 문서에 붙습니다.
+    각 섹션은 기본적으로 <b>New 문서(최신순)</b>가 먼저 오고 그 아래 <b>나머지 문서(오래된 순)</b>가 이어지며,
+    섹션 제목 옆의 <b>"최신 문서순"</b> 버튼을 누르면 그 섹션 전체를 최신 수정일 순으로 다시 정렬합니다(다시 누르면 기본 순서로 복귀).
+  </div>
+
   <div class="filter-wrap">
     <input id="filter" type="search" placeholder="문서 검색 — 제목·설명·키워드 입력 (예: 빌더, 예산, POOL, 강사)" autocomplete="off">
     <div class="filter-hint" id="count"></div>
   </div>
 
   <section data-sec>
-    <h2>🚀 시작하기 <span class="folder">루트</span></h2>
+    <div class="sec-head">
+      <h2>🚀 시작하기 <span class="folder">루트</span></h2>
+      <button class="sort-btn" type="button" data-sort-btn>최신 문서순</button>
+    </div>
     <p class="section-desc">프로젝트 개요와 현재 개발 상태.</p>
     <div class="doc-list">
-      <a class="doc" href="viewer.html?file=../README.md" data-tags="readme 개요 소개 기능 요약">
+      <a class="doc" href="viewer.html?file=../README.md" data-date="2026-07-12" data-tags="readme 개요 소개 기능 요약">
         <span class="doc-title">README — 프로젝트 개요·핵심 기능</span>
         <span class="chip live">현행</span>
         <span class="doc-desc">저장소 최상위 소개 문서. 무엇을 만들고 있는지, 지금까지 구현된 핵심 기능 요약.</span>
         <span class="doc-path">README.md</span>
       </a>
-      <a class="doc" href="viewer.html?file=STATUS.md" data-tags="현황 진행 상태 완료 미착수 이슈 로드맵 향후 방향 status">
+      <a class="doc" href="viewer.html?file=STATUS.md" data-date="2026-07-12" data-tags="현황 진행 상태 완료 미착수 이슈 로드맵 향후 방향 status">
         <span class="doc-title">개발 현황 (STATUS) <span class="ver">2026-07-12 기준</span></span>
         <span class="chip live">현행</span>
         <span class="doc-desc">완료 / 진행중 / 알려진 이슈 / 다음 우선순위 — 항상 "지금 시점" 기준으로 덮어써서 갱신.</span>
         <span class="doc-path">doc/STATUS.md</span>
       </a>
-      <a class="doc" href="viewer.html?file=DEVLOG.md" data-tags="devlog 개발 기록 타임라인 버그 수정 이슈 히스토리">
+      <a class="doc" href="viewer.html?file=DEVLOG.md" data-date="2026-07-12" data-tags="devlog 개발 기록 타임라인 버그 수정 이슈 히스토리">
         <span class="doc-title">개발 기록 (DEVLOG) <span class="ver">갱신 2026-07-12</span></span>
         <span class="chip live">현행</span>
         <span class="doc-desc">날짜별 개발 타임라인 — 수정/버그 이력(Gemini 모델명 오타, IME 버그 등) 포함. 새 작업이 끝날 때마다 append.</span>
         <span class="doc-path">doc/DEVLOG.md</span>
       </a>
-      <a class="doc" href="viewer.html?file=architecture.md" data-tags="아키텍처 데이터 저장 구조 neon postgres vercel blob prisma">
+      <a class="doc" href="viewer.html?file=architecture.md" data-date="2026-07-12" data-tags="아키텍처 데이터 저장 구조 neon postgres vercel blob prisma">
         <span class="doc-title">데이터 저장 구조 (아키텍처)</span>
         <span class="chip live">현행</span>
         <span class="doc-desc">Neon Postgres(텍스트) + Vercel Blob(파일) 이중 저장 구조, 주요 테이블, 메모 등록 시 실제 처리 흐름.</span>
@@ -145,16 +182,19 @@
   </section>
 
   <section data-sec>
-    <h2>📐 기획 · 설계 <span class="folder">doc/spec/</span></h2>
+    <div class="sec-head">
+      <h2>📐 기획 · 설계 <span class="folder">doc/spec/</span></h2>
+      <button class="sort-btn" type="button" data-sort-btn>최신 문서순</button>
+    </div>
     <p class="section-desc">제품이 무엇이고 어디로 가는지를 정의하는 문서 — PRD.</p>
     <div class="doc-list">
-      <a class="doc" href="viewer.html?file=spec/PRD_curriculum.md" data-tags="커리큘럼 빌더 pool 강사 카테고리 예산 kpi 사업계획서 prd">
+      <a class="doc" href="viewer.html?file=spec/PRD_curriculum.md" data-date="2026-07-12" data-tags="커리큘럼 빌더 pool 강사 카테고리 예산 kpi 사업계획서 prd">
         <span class="doc-title">교육 커리큘럼 설계 플랫폼 PRD <span class="ver">v0.3 · 2026-06-19</span></span>
         <span class="chip live">Phase 1 구현됨</span>
         <span class="doc-desc">마스터데이터·과정 Pool·드래그앤드롭 빌더(Phase 1, 구현됨) + 예산/강사료/KPI/사업계획서 자동생성(Phase 2~4, 미구현) 전체 설계.</span>
         <span class="doc-path">doc/spec/PRD_curriculum.md</span>
       </a>
-      <a class="doc" href="viewer.html?file=spec/PRD.md" data-tags="쇼츠 shorts 영상 편집 자막 ai 렌더링 prd">
+      <a class="doc" href="viewer.html?file=spec/PRD.md" data-date="2026-07-12" data-tags="쇼츠 shorts 영상 편집 자막 ai 렌더링 prd">
         <span class="doc-title">쇼츠 제작 플랫폼 PRD <span class="ver">v0.1 · 2026-06-19</span></span>
         <span class="chip plan">부분 구현</span>
         <span class="doc-desc">업로드→AI분석→편집→자막→배포 워크플로우. 데이터 모델과 화면 뼈대(/shorts)만 구현, AI 분석·서버사이드 렌더링은 미구현.</span>
@@ -164,22 +204,25 @@
   </section>
 
   <section data-sec>
-    <h2>📚 교육과정 콘텐츠 자료 <span class="folder">doc/data/</span></h2>
+    <div class="sec-head">
+      <h2>📚 교육과정 콘텐츠 자료 <span class="folder">doc/data/</span></h2>
+      <button class="sort-btn" type="button" data-sort-btn>최신 문서순</button>
+    </div>
     <p class="section-desc">소프트웨어 스펙이 아니라, 커리큘럼 Pool에 실제로 채워 넣는 콘텐츠 데이터(과거 운영 이력·강사 풀·세션 구성). 세 문서는 서로를 참조하는 체인 구조입니다.</p>
     <div class="doc-list">
-      <a class="doc" href="viewer.html?file=data/2022_교육과정_기획참고자료.md" data-tags="2022 결과보고서 kobeta 방송기술 전문강화 사업 상세카드">
+      <a class="doc" href="viewer.html?file=data/2022_교육과정_기획참고자료.md" data-date="2026-07-12" data-tags="2022 결과보고서 kobeta 방송기술 전문강화 사업 상세카드">
         <span class="doc-title">2022년 결과보고서 분석 <span class="ver">기원 문서</span></span>
         <span class="chip snap">참고자료</span>
         <span class="doc-desc">2022년도 지상파 방송기술 전문강화 사업 결과보고서(96p) 분석 — 13개 과정 상세 카드, 예산·만족도 실적.</span>
         <span class="doc-path">doc/data/2022_교육과정_기획참고자료.md</span>
       </a>
-      <a class="doc" href="viewer.html?file=data/교육과정_POOL.md" data-tags="pool 통합 인덱스 2020 2026 과정 강사 풀 seed">
+      <a class="doc" href="viewer.html?file=data/교육과정_POOL.md" data-date="2026-07-12" data-tags="pool 통합 인덱스 2020 2026 과정 강사 풀 seed">
         <span class="doc-title">교육과정 POOL — 연도별 통합 정리</span>
         <span class="chip live">Pool 시드 데이터 원본</span>
         <span class="doc-desc">2020~2026 전체 과정 통합 인덱스 + 신규 16개 상세 카드. `prisma/seed-pool-import.ts`가 이 문서를 참고해 시드 데이터를 구성.</span>
         <span class="doc-path">doc/data/교육과정_POOL.md</span>
       </a>
-      <a class="doc" href="viewer.html?file=data/지역사_특화_교육프로그램_기획.md" data-tags="지역사 특화 1일 2일 프로그램 템플릿 강사풀">
+      <a class="doc" href="viewer.html?file=data/지역사_특화_교육프로그램_기획.md" data-date="2026-07-12" data-tags="지역사 특화 1일 2일 프로그램 템플릿 강사풀">
         <span class="doc-title">지역사 특화 교육프로그램 기획 (1일/2일형)</span>
         <span class="chip plan">기획 문서</span>
         <span class="doc-desc">현재 Pool에 실제 등록된 강의·강사만으로 짠 지역 특화 1일/2일 프로그램 템플릿 3종 — 신규 강사/콘텐츠 발굴 없이 바로 운영 가능.</span>
@@ -196,6 +239,109 @@
 
 </div>
 <script>
+// ── "New" 배지 + 섹션별 기본 정렬(New는 최신순, 나머지는 오래된 순) + "최신 문서순" 토글 ──
+// data-date는 이 저장소 자체의 실제 git 커밋일이다(하드코딩이 아니라 발행 시점에 실측해서
+// 채워 넣는 값 — mars-master-docs 등 다른 문서 사이트와 동일한 규칙). GitHub Pages의 HTTP
+// Last-Modified는 "그 파일이 실제로 언제 바뀌었는지"가 아니라 "사이트가 마지막으로 언제
+// 배포됐는지"만 반영해(실측 확인 — 배포 한 번으로 안 바뀐 파일까지 전부 같은 시각을 반환) 이
+// 용도로 쓸 수 없었다.
+(function(){
+  var NEW_DAYS = 7;
+  var todayMs = Date.now();
+  var sections = Array.prototype.slice.call(document.querySelectorAll('[data-sec]'));
+
+  function parseDate(s){
+    if (!s) return null;
+    var d = new Date(s + 'T00:00:00');
+    return isNaN(d.getTime()) ? null : d;
+  }
+  function isNew(dateStr){
+    var d = parseDate(dateStr);
+    if (!d) return false;
+    return (todayMs - d.getTime()) / 86400000 <= NEW_DAYS;
+  }
+  function docDateVal(a){
+    var d = parseDate(a.getAttribute('data-date'));
+    return d ? d.getTime() : 0;
+  }
+
+  document.querySelectorAll('a.doc').forEach(function(a){
+    if (isNew(a.getAttribute('data-date'))) {
+      a.setAttribute('data-new', '1');
+      var title = a.querySelector('.doc-title');
+      if (title) {
+        var b = document.createElement('span');
+        b.className = 'new-badge';
+        b.textContent = 'NEW';
+        title.appendChild(b);
+      }
+    }
+  });
+
+  // 기본 정렬: New 그룹(최신이 맨 위)이 먼저, 그다음 나머지(오래된 문서가 맨 위 — 자연스러운
+  // 기획 문서 읽기 순서를 유지).
+  function defaultOrder(list){
+    var news = list.filter(function(a){ return a.getAttribute('data-new') === '1'; });
+    var olds = list.filter(function(a){ return a.getAttribute('data-new') !== '1'; });
+    news.sort(function(a,b){ return docDateVal(b) - docDateVal(a); });
+    olds.sort(function(a,b){ return docDateVal(a) - docDateVal(b); });
+    return news.concat(olds);
+  }
+  function newestFirstOrder(list){
+    return list.slice().sort(function(a,b){ return docDateVal(b) - docDateVal(a); });
+  }
+
+  // FLIP(First-Last-Invert-Play) 재배치 애니메이션 — 순서가 실제로 바뀌는 걸 눈으로 보여줘야
+  // "정렬이 바뀌었으니 다시 위부터 훑어보자"고 인지할 수 있다. 순간적으로 뒤바뀌면 뭐가 어디로
+  // 갔는지 모른 채 원하는 문서를 처음부터 다시 찾아야 한다.
+  function reorderWithFlip(wrap, newOrder){
+    var oldOrder = Array.prototype.slice.call(wrap.children);
+    var firstRects = oldOrder.map(function(el){ return el.getBoundingClientRect(); });
+    newOrder.forEach(function(el){ wrap.appendChild(el); });
+    newOrder.forEach(function(el){
+      var firstRect = firstRects[oldOrder.indexOf(el)];
+      var lastRect = el.getBoundingClientRect();
+      var dx = firstRect.left - lastRect.left, dy = firstRect.top - lastRect.top;
+      if (!dx && !dy) return;
+      el.style.transition = 'none';
+      el.style.transform = 'translate(' + dx + 'px,' + dy + 'px)';
+      el.getBoundingClientRect(); // 강제 리플로우 — transform이 실제로 적용된 뒤에 아래 애니메이션이 걸리게
+      requestAnimationFrame(function(){
+        el.style.transition = 'transform .32s cubic-bezier(.2,.8,.2,1)';
+        el.style.transform = '';
+      });
+    });
+  }
+
+  sections.forEach(function(sec){
+    var wrap = sec.querySelector('.doc-list');
+    var btn = sec.querySelector('[data-sort-btn]');
+    if (!wrap) return;
+
+    // 첫 로드 시 기본 정렬 적용(애니메이션 없이 바로 배치 — 화면에 뭔가 보이기 전이므로 무의미).
+    defaultOrder(Array.prototype.slice.call(wrap.querySelectorAll('a.doc'))).forEach(function(el){ wrap.appendChild(el); });
+    if (!btn) return;
+
+    var newestMode = false;
+    btn.addEventListener('click', function(){
+      // 지금 이 섹션이 화면(뷰포트) 안에서 보이던 위치를 기록해뒀다가, 재정렬 뒤에도 같은 자리에
+      // 계속 보이도록 스크롤을 보정한다 — 다른 섹션들 순서/개수는 안 바뀌므로 페이지 전체 높이가
+      // 거의 그대로지만, 혹시 모를 미세한 흔들림까지 방지해 "방금 보던 곳에서 그대로 다시 훑어볼
+      // 수 있게" 한다.
+      var beforeTop = sec.getBoundingClientRect().top;
+      newestMode = !newestMode;
+      var list = Array.prototype.slice.call(wrap.querySelectorAll('a.doc'));
+      reorderWithFlip(wrap, newestMode ? newestFirstOrder(list) : defaultOrder(list));
+      btn.textContent = newestMode ? '기본 순서로' : '최신 문서순';
+      btn.classList.toggle('active', newestMode);
+      requestAnimationFrame(function(){
+        var delta = sec.getBoundingClientRect().top - beforeTop;
+        if (delta) window.scrollBy(0, delta);
+      });
+    });
+  });
+})();
+
 (function(){
   var input = document.getElementById('filter');
   var docs = Array.prototype.slice.call(document.querySelectorAll('a.doc'));
