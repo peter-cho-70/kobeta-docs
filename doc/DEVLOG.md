@@ -36,3 +36,9 @@
 - **추가/변경**: 공개 문서 사이트 [my-education-docs](https://peter-cho-70.github.io/my-education-docs/) 신설 — GitHub Pages로 발행하고 [peter-cho-70.github.io](https://peter-cho-70.github.io/) 허브에 등록. `stockdashboard-docs` 등 기존 문서 사이트와 동일한 index.html + viewer.html 패턴 사용.
 - **추가/변경**: 이 문서 정리 방식을 모든 프로젝트에 적용되는 표준으로 정식화 — `~/.claude/CLAUDE.md`에 "프로젝트 문서화 규칙" 추가, `~/.claude/templates/project-docs-site/`에 재사용 템플릿 저장, 허브에 [문서화 표준](https://peter-cho-70.github.io/doc/viewer.html?file=DOCS-STANDARD.md) 문서 게시.
 - **추가/변경**: 위 표준에 맞춰 `docs/PROGRESS.md`를 `docs/STATUS.md`(현재 상태, 덮어쓰기)와 `docs/DEVLOG.md`(이 문서, 날짜별 append)로 분리. `docs/product/` → `docs/spec/`, `docs/curriculum-data/` → `docs/data/`로 폴더명 정리(공개 문서 사이트와 이름 통일).
+
+## 2026-07-24 — 프로젝트 분리 및 문서 사이트 개명
+
+- **변경**: 로컬 `my_education` 폴더에 있던 `app/`·`docs/`가 사실상 전부 KOBETA 교육원 업무 도구였음을 확인하고, 별도의 `KOBETA` 로컬 프로젝트 폴더로 분리 이동. `my_education`은 향후 사용자 개인 학습 기록용으로 새 git 저장소를 초기화하고 비워둠.
+- **변경**: 공개 문서 사이트 저장소를 `my-education-docs` → **`kobeta-docs`**로 개명(`gh repo rename`). Pages 새 주소는 https://peter-cho-70.github.io/kobeta-docs/ . 이에 따라 `doc/STATUS.md`의 자기참조 링크를 갱신.
+- **알려진 불일치**: 앱 소스코드가 올라간 private GitHub 저장소는 아직 이름이 `peter-cho-70/my_education` 그대로임(로컬 폴더명 `KOBETA`와 불일치) — 별도 확인 후 진행 예정.

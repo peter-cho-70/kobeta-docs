@@ -19,7 +19,7 @@ KBTE(한국방송기술교육원, 이후 **KOBETA**로 명칭 통일)의 교육 
 - 메모/일지(`MemoBoard`) — 클립보드 이미지 붙여넣기
 - 오늘의 할 일 — 루틴/오늘 항목 구분, 5초 실행취소, 홈 요약 카드, PWA 설치 지원
 - 데이터 계층을 Neon Postgres + Vercel Blob으로 전환 완료 (Vercel 배포 대응)
-- 문서 체계 정비 — 로컬 `docs/`(spec/data/STATUS/DEVLOG) + 공개 문서 사이트([my-education-docs](https://peter-cho-70.github.io/my-education-docs/)) 구축
+- 문서 체계 정비 — 로컬 `docs/`(spec/data/STATUS/DEVLOG) + 공개 문서 사이트([kobeta-docs](https://peter-cho-70.github.io/kobeta-docs/)) 구축
 
 ## 🚧 진행 중 / 미착수
 

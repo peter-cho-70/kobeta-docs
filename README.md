@@ -35,5 +35,5 @@
 
 ## 🔗 관련 저장소
 
-- 앱 소스코드: `peter-cho-70/my_education` (private)
+- 앱 소스코드: `peter-cho-70/my_education` (private, 로컬 프로젝트 폴더명은 `KOBETA`로 분리됨)
 - 문서 허브: [peter-cho-70.github.io](https://peter-cho-70.github.io/)
